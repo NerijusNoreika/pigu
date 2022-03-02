@@ -21,5 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/workers', function(Request $request) {
-    return WorkerResource::collection(Worker::paginate());
+    return WorkerResource::collection(Worker::paginate(20, ['id', 'name', 'surname', 'department', 'salary']));
+});
+Route::get('/workers/all', function(Request $request) {
+    return WorkerResource::collection(Worker::all(['id', 'name', 'surname', 'department', 'salary']));
 });
